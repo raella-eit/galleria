@@ -1,0 +1,34 @@
+<template>
+  <div class="carousel slide bg-dark" data-bs-ride="carousel">
+    <div class="carousel-indicators row g-0">
+      <template for:each={carouselButtonList} for:item="button">
+        <div key={button.id} class={button.cls} data-id={button.id} onclick={handleIndicatorClick}></div>
+      </template>
+    </div>
+    <div class="carousel-inner h-100">
+      <template for:each={_itemList} for:item="item">
+        <div class={item.cls} data-id={item.id} key={item.id}>
+          <img src={item.imgSrc} class="d-block w-100" alt={item.title}>
+          <div class="fixed-top container-fluid h-100">
+            <div class="row h-100 p-5 img-overlay" ontouchstart={startTouch} ontouchend={endTouch}>
+              <div class="col text-center mt-auto">
+                <div class="carousel-info text-uppercase">
+                  <h5 class="text-white mb-0">{item.title}</h5>
+                  <h6 class="text-white mb-0">{item.dates}</h6>
+                  <button class="btn btn-outline-primary mt-1 mb-0 btn-sm" onclick={handleRedirect} data-item={item.id}
+                    data-type={item.objectType}>{buttonLabel}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+    <a class="carousel-control-prev" onclick={previous} role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" onclick={next} role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+  </div>
+</template>

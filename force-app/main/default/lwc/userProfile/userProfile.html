@@ -1,0 +1,57 @@
+<template>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto me-auto mt-2">
+                <h1>{labels.title}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <lightning-record-edit-form record-id={recordId} object-api-name={objectApiName} onsuccess={handleSuccess}
+                onerror={handleError}>
+                <lightning-input-field field-name={fname}></lightning-input-field>
+                <lightning-input-field field-name={lname}></lightning-input-field>
+                <lightning-input-field field-name={email}></lightning-input-field>
+                <lightning-input-field field-name={phone}></lightning-input-field>
+                <lightning-input-field field-name="Nationality__pc"></lightning-input-field>
+                <div class="slds-grid  slds-grid_vertical-align-end">
+                    <div class="slds-col_bump-left">
+                        <button type="button"
+                            class="btn btn-outline-primary slds-var-m-top_small slds-var-m-right_small"
+                            onclick={handleCancel}>{labels.cancel}</button>
+                         <button type="button"
+                            class="btn btn-outline-primary slds-var-m-top_small slds-var-m-right_small"
+                            onclick={toggleModal}>{labels.deactivate}</button>
+                        <button type="submit"
+                            class="btn btn-primary slds-var-m-top_small slds-var-m-right_large">{labels.save}</button>
+                    </div>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+    </div>
+    <section if:true={showModal} role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">{labels.deactivationTitle}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                onclick={toggleModal}></button>
+                        </div>
+                        <div class="modal-body">
+                            <lightning-formatted-rich-text value={labels.deactivationText}></lightning-formatted-rich-text>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" data-bs-dismiss="modal"
+                                onclick={toggleModal}>{labels.cancel}</button>
+                            <button type="button" class="btn btn-primary" onclick={confirmDeactivation}>{labels.agree}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</template>

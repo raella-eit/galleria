@@ -1,0 +1,71 @@
+<template>
+    <lightning-card>
+        <div if:true={showFileUpload} class="slds-var-m-left_medium">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col">
+                    <c-file-upload 
+                                record-id={recordId}
+                                max-files=1
+                                min-files=0
+                                auto-save=false
+                                input-label={LOGO_IMG_LABEL}
+                                name="Logo"
+                                accepted-formats={acceptedFormats}
+                                accepts-multiple="false"
+                                onchoose={handleChooseImages}>
+                    </c-file-upload>
+                </div>
+                <div class="slds-col">
+                    <c-file-upload 
+                                record-id={recordId}
+                                max-files=100
+                                min-files=0
+                                auto-save=false
+                                input-label={STORE_IMG_LABEL}
+                                name="Store"
+                                accepted-formats={acceptedFormats}
+                                accepts-multiple="true"
+                                onchoose={handleChooseImages}>
+                    </c-file-upload>
+                </div>
+            </div>
+
+            <c-loading-spinner
+                is-spinner-visible={isSpinnerVisible}
+                alt-text={altText}
+                size="medium">
+            </c-loading-spinner>
+
+            <div if:true={message} class="slds-text-body_regular slds-text-color_error">
+                {message}
+            </div>
+
+            <br /><br />
+
+            <lightning-button 
+                        class="slds-var-m-top_medium" 
+                        label="Submit" 
+                        onclick={handleUpload} 
+                        variant="brand">
+            </lightning-button>
+        </div>
+
+        <div class="slds-var-m-left_medium slds-var-m-top_medium">
+            <c-attachments-display
+                        record-id={recordId}
+                        name="Logo"
+                        can-delete-files={canDeleteFiles}
+                        allow-delete-all="true"
+                        ondelete={handleDelete}>
+            </c-attachments-display>
+            <c-attachments-display
+                        record-id={recordId}
+                        name="Store"
+                        can-delete-files={canDeleteFiles}
+                        allow-delete-all="true"
+                        ondelete={handleDelete}>
+            </c-attachments-display>
+
+        </div>
+    </lightning-card>
+</template>

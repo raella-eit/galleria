@@ -1,0 +1,27 @@
+<template>
+    <lightning-record-edit-form  object-api-name="Case">
+        
+    </lightning-record-edit-form>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto mx-auto mt-3">
+                <h3>Lost Items Status</h3>
+            </div>
+        </div>
+        <div class="row">
+            <lightning-record-edit-form  object-api-name="Case">
+
+                <lightning-input-field disabled  field-name="Home_Address__c"  value={Home_Address__c}></lightning-input-field>
+                <lightning-input-field disabled field-name="Subject" value={Subject}></lightning-input-field>
+                <lightning-input-field disabled field-name="Where_Lost__c"  value={Where_Lost__c}></lightning-input-field>
+                <lightning-input-field disabled field-name="When_Lost__c"  value={When_Lost__c}></lightning-input-field>
+                <lightning-input-field disabled field-name="Item_Full_Description__c"  value={Item_Full_Description__c}></lightning-input-field>     
+            </lightning-record-edit-form>
+
+        </div>
+        <div class='text-center mt-1'>
+            <lightning-formatted-rich-text value={labels.help}></lightning-formatted-rich-text>
+        </div>
+    </div>
+</template>

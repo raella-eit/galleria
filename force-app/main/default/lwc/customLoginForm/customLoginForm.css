@@ -1,0 +1,39 @@
+.text-error {
+    color: red;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    color: var(--lwc-colorTextButtonBrand,rgb(255, 255, 255));
+    cursor: pointer;
+    background-color: var(--lwc-colorBackgroundButtonBrand,rgb(0, 0, 0));
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-family: var(--lwc-fontFamily,Lato);
+    font-weight: 700;
+    line-height: 1.42857143;
+    border-radius: 2px;
+    outline: none;
+    text-transform: uppercase;
+}
+
+.inputContainer {
+    margin-bottom: 10px;
+    padding: 12px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.register-text {
+    float: right;
+}

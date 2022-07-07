@@ -1,0 +1,8 @@
+<template>
+    <template if:true={isProcessInstanceStep}>
+        <lightning-card title={title}>
+            <p if:true={comment} class="slds-p-horizontal_small">{comment}</p>
+            <p if:true={error} class="slds-p-horizontal_small slds-text-color_error">{error}</p>
+        </lightning-card>
+    </template>
+</template>

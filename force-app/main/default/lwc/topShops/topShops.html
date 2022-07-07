@@ -1,0 +1,28 @@
+<template>
+    <template if:true={accountItems.length}>
+        <div class="container-fluid">
+            <h2 class="text-center mt-2 mb-2">{labels.TOP_SHOPS_SECTION_TITLE}</h2>
+            <div class="row">
+                <template for:each={accountItems} for:item="item">
+                    <div class="col col-4 col-sm-4 col-md-4 col-lg-3 m-0 p-1 fixed-content-height" onclick={handleClick}
+                        key={item.id} data-item={item.id}>
+                        <div class="card text-white h-100 overflow-hidden vivify fadeIn shadow rounded card-bg"
+                            data-item={item.id}>
+                            <img if:true={item.imgSrc} data-item={item.id} src={item.imgSrc} alt={item.title}
+                                class="card-img d-none h-100 vivify" onload={showImage}>
+                            <div class="card-img-overlay d-flex flex-column p-0" data-item={item.id}
+                                data-vip={item.isVIP}>
+                                <div class="mb-0 mt-auto p-1">
+                                    <h6 class="m-0 text-truncate text-uppercase" data-item={item.id}>{item.title}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <a href="#" class="btn btn-outline-primary" onclick={handleLoadMore}>{labels.ALL_SHOPS_BTN_LBL}</a>
+        </div>
+    </template>
+</template>

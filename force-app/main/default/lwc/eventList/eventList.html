@@ -1,0 +1,20 @@
+<template>
+    <div class="container-fluid">
+        <div class="row">
+            <div class={alignClass}>
+                <h1>{labels.EVENTS_TITLE}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <template if:false={eventItems.length}>
+                <div if:false={isLoading} class='text-center'>{labels.NO_RESULT_FOUND_MSG}</div>
+            </template>
+            <c-generic-data-card items={eventItems} parent-redirect disable-load-more 
+                onselect={handleEventSelection}>
+            </c-generic-data-card>
+        </div>
+    </div>
+    <div if:true={isLoading}>
+        <lightning-spinner alternative-text={labels.LOADING} size="medium"></lightning-spinner>
+    </div>
+</template>

@@ -1,0 +1,67 @@
+<template>
+  <template if:false={isPlaceholder}>
+    <lightning-card title={relatedListTitle}>    
+      <div class="slds-grid slds-wrap slds-var-p-around_medium">    
+        <template if:true={results}>                
+          <template for:each={results} for:item="file">  
+            <div class= "slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-var-p-around_medium" key={file.fileId} >                    
+              <div style="width:15rem" key={file.fileId}>
+                <div class="slds-file slds-file_card slds-has-title">
+                  <figure>
+                    <a href={file.viewUrl} class="slds-file__crop" target="_blank">
+                      <img src={file.thumbnailPath} alt={file.fileName} />
+                    </a>
+                    <figcaption class="slds-file__title slds-file__title_card">                      
+                      <div class="slds-media__body">
+                        <p class="slds-truncate">
+                            <lightning-formatted-url value={file.downloadUrl} 
+                              tooltip={file.filePath} 
+                              label={file.fileName} 
+                              target="_blank">
+                          </lightning-formatted-url>
+                        </p>
+                        <p> {file.fileDate} - {file.fileSize} - {file.fileExtn} 
+                          <lightning-button-icon 
+                              if:true={canDeleteFiles}
+                              icon-name="action:delete" 
+                              alternative-text="Delete" 
+                              title="Delete"
+                              class="my-icon slds-var-m-left_large slds-var-m-right_x-small" 
+                              variant="brand" 
+                              onclick={deleteImage}
+                              value={file.documentId}>
+                        </lightning-button-icon>
+                        </p>
+                      </div>                      
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </template>
+        </template>     
+      </div>      
+    </lightning-card>
+  </template>
+  <template if:true={isPlaceholder}>
+    <lightning-card title={placeholderRelatedListTitle}>
+      <div class="slds-grid slds-wrap slds-var-p-around_medium">
+        <template if:true={placeholderResults}>
+          <template for:each={placeholderResults} for:item="file">
+            <div class="slds-col slds-size_3-of-4 slds-medium-size_1-of-3 slds-large-size_1-of-4 slds-var-p-around_medium" key={file.fileId}>
+              <div key={file.fileId}>
+                <article class="slds-tile slds-tile_board">
+                  <div class="slds-tile__detail">
+                    <figure>
+                      <img src={file.thumbnailPath} alt={file.fileName} />
+                    </figure>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </template>
+        </template>
+      </div>
+    </lightning-card>
+  </template>
+</template>

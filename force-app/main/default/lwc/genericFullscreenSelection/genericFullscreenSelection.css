@@ -1,0 +1,33 @@
+/* Position the content inside the overlay */
+  a:hover{
+      color:var(--bs-white-rgb);
+  }
+
+  .hide{
+    top:-100vh;
+  }
+  .show{
+    top:0;
+  }
+  .position-fixed.container-fluid{
+    transition-property: all;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    opacity:0;
+  }
+
+  .bg-override {
+    background-color: black !important;
+}
+
+.pad-ajust-cls {
+  padding-top: 0.5vh;
+  width: 24px;
+  height: 24px; 
+}

@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title={cardTitle}>
+        <lightning-record-edit-form 
+                object-api-name={objectApiName}
+                onsuccess={handleSuccess}
+                onerror={handleError}>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name={name} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={nameAR}></lightning-input-field>
+                    <lightning-input-field field-name={submitterName} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={submitterEmail} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={submitterNumber} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={category} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={campaign}></lightning-input-field>
+                    <lightning-input-field field-name={allBranches}></lightning-input-field>
+                    <lightning-input-field field-name={exclusive}></lightning-input-field>
+                    <c-file-upload 
+                            record-id={recordId}
+                            max-files=100
+                            min-files=0
+                            auto-save=true
+                            input-label={OFFER_IMG_LABEL}
+                            name="Offer"
+                            accepted-formats={acceptedFormats}
+                            accepts-multiple="true"
+                            onchoose={handleChooseImages}>
+                    </c-file-upload>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-input-field field-name={description} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={descriptionAR}></lightning-input-field>
+                    <lightning-input-field field-name={startDate} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={endDate} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={keywords}></lightning-input-field>
+                    <lightning-input-field field-name={keywordsAR}></lightning-input-field>
+                    <lightning-input-field field-name={termsAndConditions} required="true"></lightning-input-field>
+                    <lightning-input-field field-name={comment}></lightning-input-field>
+                </div>
+            </div>
+            <div class="slds-grid  slds-grid_vertical-align-end">
+                <div class="slds-col_bump-left">
+                    <lightning-button class="slds-var-m-top_small slds-var-m-right_small" variant="brand-outline" name="Cancel" label="Cancel" onclick={handleCancel}>
+                    </lightning-button>
+                    <lightning-button class="slds-var-m-top_small slds-var-m-right_large" variant="brand" type="submit" name="Save" label="Save">
+                    </lightning-button>
+                </div>
+            </div>
+        </lightning-record-edit-form>   
+        <c-loading-spinner
+            is-spinner-visible={isSpinnerVisible}
+            alt-text={loadingText}
+            size="medium">
+        </c-loading-spinner>
+    </lightning-card>
+</template>

@@ -1,0 +1,11 @@
+<template>
+    <div class="container-fluid p-0">
+        <c-item-reservation-intro-card hide-image={hideImage} is-guest={isGuestUser} onopenmodal={openModal}>
+        </c-item-reservation-intro-card>
+        <div if:false={isGuestUser}>
+            <c-item-reservation-list></c-item-reservation-list>
+            <c-new-utility-item-reservation onsave={refreshData}>
+            </c-new-utility-item-reservation>
+        </div>
+    </div>
+</template>

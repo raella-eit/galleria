@@ -1,0 +1,14 @@
+<template>
+    <template if:true={eventItems.length}>
+        <div class="container-fluid">
+            <h2 class="text-center mt-2 mb-2">{labels.TOP_EVENTS_SECTION_TITLE}</h2>
+            <div class="row">
+                <c-generic-data-card items={eventItems} onselect={handleEventSelection} parent-redirect disable-load-more>
+                </c-generic-data-card>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <a href="#" class="btn btn-outline-primary" onclick={handleLoadMore}>{labels.ALL_EVENTS_BTN_LBL}</a>
+        </div>
+    </template>
+</template>

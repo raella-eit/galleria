@@ -1,0 +1,36 @@
+<template>
+    <div class="container-fluid mb-3">
+        <template if:true={results}>
+            <h5>{labels.listTitle}</h5>
+            <div class="row">
+                <template for:each={results} for:item="res">
+                    <div class="col-12 col-md-4 d-flex align-items-center rounded bg-white vivify popInLeft mb-2 p-2"
+                        key={res.reservationId}>
+                        <span
+                            class="bi slds-avatar slds-avatar_circle flex-shrink-0 me-3 mt-auto mb-auto bg-white shadow">
+                            <img src={res.logo}>
+                        </span>
+                        <div>
+                            <h6 class="mb-0">{res.item} # {res.reservationCode}</h6>
+                            <p class="text-muted fst-italic mb-0">{res.reservationDay} {res.reservationTime}</p>
+                        </div>
+                        <div class="ms-auto">
+                            <lightning-button-icon icon-name="action:delete" alternative-text={labels.delete}
+                                title={labels.delete}
+                                class="slds-button_icon slds-var-m-left_large slds-var-m-right_x-small delete-btn-icon" variant="brand"
+                                onclick={openDialog} value={res.reservationId}>
+                            </lightning-button-icon>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <c-generic-confirmation-dialog 
+            header-title={labels.dialog_headerTitle} 
+            content={labels.dialog_content}
+            cancel-button-label={labels.dialog_cancel} 
+            confirm-button-label={labels.dialog_confirm}
+            onconfirm={deleteReservation}>
+        </c-generic-confirmation-dialog>
+    </div>
+</template>

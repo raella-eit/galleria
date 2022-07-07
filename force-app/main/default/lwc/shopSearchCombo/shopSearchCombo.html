@@ -1,0 +1,25 @@
+<template>
+    <lightning-input type="text" label={labels.SEARCH_LABEL} data-id="searchByName" onchange={handleSearchChange}
+        value={searchTerm}></lightning-input>
+    <div if:true={shopResults.length} class="slds-dropdown slds-dropdown_length-5 slds-dropdown_small" role="listbox">
+        <ul class="slds-listbox slds-listbox_vertical p-0 m-0" role="presentation">
+            <template for:each={shopResults} for:item="shop">
+                <li key={shop.Id} role="presentation" class="slds-listbox__item" data-id={shop.Id}
+                    onclick={onShopSelection}>
+                    <div class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                        role="option" data-id={shop.Id}>
+                        <span class="slds-media__body" data-id={shop.Id}>
+                            <span class="slds-truncate" title={shop.Name} data-id={shop.Id}>{shop.Name}</span>
+                        </span>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </div>
+    <div class="asdasdqweaxdzc" lwc:dom="manual"></div>
+    <!-- <object data=url} width="600" height="400">
+        <embed src={url} width="600" height="400"/>
+        Error: Embedded data could not be displayed.
+    </object> -->
+    
+</template>

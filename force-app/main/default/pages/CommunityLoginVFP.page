@@ -1,0 +1,122 @@
+<apex:page id="loginPage" showHeader="false" showChat="false" sidebar="false" standardStylesheets="false" controller="CustomLoginController">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="{!URLFOR($Resource.GRSiteAssets, '/GRSiteAssets/styles/bootstrap/bootstrap.min.css')}" rel="stylesheet" />
+        <link href="{!URLFOR($Resource.GRSiteAssets, '/GRSiteAssets/styles/global.css')}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <span class="d-flex justify-content-center mt-5">
+                        <img src="{!$Resource.CommunityLogo}" />
+                    </span>
+                </div>
+            </div>
+            <div class="row m-3">
+                <apex:form id="loginForm" forceSSL="true">
+                    <div class="row">
+                        <apex:pageMessages showDetail="false" id="error" />
+                    </div>
+                    <div class="row m-1">
+                        <apex:inputText required="true" id="login-email" styleClass="form-control un" value="{!username}" html-placeholder="{!$Label.LOGIN_EMAIL}"
+                        />
+                    </div>
+                    <div class="row m-1 mt-3">
+                        <apex:inputSecret id="login-password" styleClass="form-control pw" value="{!password}" html-placeholder="{!$Label.LOGIN_PASSWORD}" />
+                    </div>
+                    <div class="row m-1 mt-3">
+                        <apex:commandButton action="{!login}" value="{!$Label.LOGIN}" id="login-submit" styleClass="btn btn-lg btn-primary btn-block"
+                        />
+                    </div>
+                    <div id="login-option">
+                        <span class="form-signin-forgot">
+                            <a href="/b2c/s/login/ForgotPassword" target="_self">{!$Label.LOGIN_FORGOT_PASSWORD}</a>
+                        </span>
+                        <span>
+                            <a href="/b2c/CommunityRegistrationVFP?{!IF(ISBLANK($CurrentPage.parameters.callback),'','callback='+$CurrentPage.parameters.callback)+IF(ISBLANK($CurrentPage.parameters.id),'','&id='+$CurrentPage.parameters.id)}" target="_self" class="register-text">{!$Label.LOGIN_REGISTER}</a>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="col mt-4 d-flex justify-content-center">
+                            <apex:repeat value="{!authProviders}" var="ap">
+                                <a href="{!siteURL + '/services/auth/sso/' + ap.developername}">
+                                    <img src="{!ap.IconUrl}" />
+                                </a>
+                            </apex:repeat>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="col">
+                            <a href="/b2c" target="_self" class="mt-5 backHomeCls d-flex justify-content-center">
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <img src="{!URLFOR($Resource.Bottom_Nav_Icons, '/Home_Bot.png')}" class="imgsize-cls" />
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <p>{!$Label.NAVIGATE_TO_HOME_LBL}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </span>
+                    </div>
+                </apex:form>
+            </div>
+        </div>
+        <style>
+            a {
+                color: var(--bs-black);
+            }
+
+            .btn {
+                width: 100%;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                color: var(--lwc-colorTextButtonBrand, rgb(255, 255, 255));
+                cursor: pointer;
+                background-color: var(--lwc-colorBackgroundButtonBrand, rgb(0, 0, 0));
+                display: inline-block;
+                text-align: center;
+                vertical-align: middle;
+                background-image: none;
+                border: 1px solid transparent;
+                white-space: nowrap;
+                padding: 10px 12px;
+                font-size: 16px;
+                font-family: var(--lwc-fontFamily, Lato);
+                font-weight: 700;
+                line-height: 1.42857143;
+                border-radius: 2px;
+                outline: none;
+                text-transform: uppercase;
+            }
+
+            .inputContainer {
+                margin-bottom: 10px;
+                padding: 12px;
+                background-color: #ffffff;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+                width: 100%;
+            }
+
+            .register-text {
+                float: right;
+            }
+
+            .imgsize-cls {
+                width: 24px;
+                height: 24px;
+                min-width: 24px;
+                min-height: 24px;
+            }
+
+            .backHomeCls {
+                text-decoration: none;
+            }
+        </style>
+    </body>
+</apex:page>

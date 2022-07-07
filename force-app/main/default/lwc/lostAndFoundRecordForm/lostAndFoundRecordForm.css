@@ -1,0 +1,13 @@
+/* Style the form - display items horizontally */
+/* .slds-textarea{
+    font-weight: initial;
+
+}
+.slds-textarea{
+    font-weight: initial;
+
+} */
+.slds-form-element__label{
+    font-weight: bold !important;
+
+}

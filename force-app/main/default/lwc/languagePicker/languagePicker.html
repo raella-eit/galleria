@@ -1,0 +1,9 @@
+<template>
+    <c-generic-fullscreen-selection options={optionList} onselect={changeLanguage} selected={userLanguage}>
+        <div slot="placeholder" class="float-end mt-1 me-3">
+            <div class='align-bottom placeholder-sizing'>
+                <h5>{selectedOption.menuLabel}</h5>
+            </div>
+        </div>
+    </c-generic-fullscreen-selection>
+</template>

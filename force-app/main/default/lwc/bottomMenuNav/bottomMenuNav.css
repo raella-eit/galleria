@@ -1,0 +1,14 @@
+.bottom-nav-item{
+    /* width: 20vw; */
+}
+
+.bottom-nav-item:first-of-type{
+    margin-left: 2vw;
+}
+
+.imgsize-cls {
+    width: 24px;
+    height: 24px;
+    min-width: 24px; 
+    min-height:24px;
+}

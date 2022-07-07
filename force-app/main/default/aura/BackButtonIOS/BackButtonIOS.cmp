@@ -1,0 +1,3 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+    <lightningcommunity:backButton iconName="utility:chevronleft" class="slds-button_icon-large"/>
+</aura:component>

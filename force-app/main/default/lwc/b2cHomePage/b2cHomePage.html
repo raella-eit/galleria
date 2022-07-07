@@ -1,0 +1,10 @@
+<template>
+    <c-b2c-home-page-carousel></c-b2c-home-page-carousel>
+    <c-client-invitation-section if:true={isGuestUser}></c-client-invitation-section>
+    <div class="d-grid gap-2">
+        <c-top-events></c-top-events>
+        <c-top-offers></c-top-offers>
+        <c-top-shops></c-top-shops>
+        <c-items-reservations hide-image></c-items-reservations>
+    </div>
+</template>

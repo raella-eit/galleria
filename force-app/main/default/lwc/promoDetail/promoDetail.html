@@ -1,0 +1,25 @@
+<template>
+    <div class="container-fluid p-0 bg-adjust">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 img-height bg-dark">
+                    <img if:true={event.imgSrc} src={event.imgSrc} alt={event.title} class="card-img h-100 vivify"
+                        onload={showImage}>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h6 class="card-title">{event.title}</h6>
+                        <p class="card-text">
+                            <lightning-formatted-rich-text value={event.description}></lightning-formatted-rich-text>
+                        </p>
+                        <p class="card-text text-uppercase"><small class="text-muted">{event.dates}</small></p>
+                        <button if:true={showReservationButton} type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            onclick={handleClickButton}>{btnLbl}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</template>

@@ -1,0 +1,28 @@
+<template>
+    <slot name="placeholder" onclick={toggle} onselect={handleCategoryChange}></slot>
+    <div class={containerCls}>
+        <div class="d-flex flex-column h-100">
+            <div class="p-2 m-0 row flex-shrink-1 w-100">
+                <div class="col-12 p-0 text-end">
+                    <!-- Button to close the overlay navigation -->
+                    <a href="javascript:void(0)" class="text-decoration-none fw-bold fs-1 me-3" onclick={toggle}>&times;</a>
+                </div>
+            </div>
+            <div class="m-0 h-100 w-100 row flex-column d-flex bg-override" data-id="menu-container">
+                <!-- Overlay content -->
+                <template if:true={options} for:each={availableOptions} for:item="option">
+                    <div key={option.value} class="col-12 p-0 text-center fs-1" onclick={handleSelectionChange}
+                        data-value={option.value}>
+                        <hr />
+                        <div class="col-12 p-0 text-center fs-6 px-4">
+                            <a href="#" data-value={option.value} data-selected={option.isSelected}
+                                class={option.cls}>{option.label}</a>
+                            <img if:true={hasIcons} class={imageCls} src={option.imgUrl} 
+                                onerror={handleImageError}>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

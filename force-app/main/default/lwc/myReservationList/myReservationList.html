@@ -1,0 +1,40 @@
+<template>
+    <div class="container mt-2">
+        <div class={rtlSupp.alignClass}>
+            <div class={rtlSupp.shopClass}>
+                <h1>{labels.TITLE}</h1>
+            </div>
+        </div>
+    </div>
+    <div if:true={isLoading}>
+        <lightning-spinner alternative-text={LOADING} size="medium"></lightning-spinner>
+    </div>
+    <div class="container mb-3 mt-2">
+        <template if:false={reservations.length}>
+            <div if:false={isLoading} class='text-center'>{labels.NO_RESULT_FOUND_MSG}</div>
+            <div if:false={isLoading} class="d-flex justify-content-center mt-3">
+                <a href="#" class="btn btn-outline-primary" onclick={handleGoToEvents}>{labels.ALL_EVENTS_BTN_LBL}</a>
+            </div>
+        </template>
+        <div class="row g-0">
+            <template if:true={reservations} for:each={reservations} for:item="reservation">
+                <div class="col-12 col-md-4 d-flex align-items-center rounded bg-white vivify popInLeft mb-2 p-2"
+                    onclick={handleEventSelection} key={reservation.Id}
+                    data-item={reservation.B2C_Promo_Schedule__r.Content_Management__c}
+                    data-name={reservation.name}>
+                    <button type="button" class="btn btn-outline-dark float-start me-2 ms-2">
+                        <lightning-icon size="small" icon-name="utility:delete" alternative-text="delete" title="delete"
+                            onclick={handleReservationDelete} data-item={reservation.Id}>
+                        </lightning-icon>
+                    </button>
+                    <div class="text-truncate align-items-center">
+                        <h6 class="mb-0 text-truncate" data-item={reservation.Id}>
+                            {reservation.name}</h6>
+                        <p class="text-muted mb-0" data-item={reservation.Id}>{reservation.B2C_Promo_Schedule__r.Day__c}
+                            {reservation.B2C_Promo_Schedule__r.Time_Display__c}</p>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

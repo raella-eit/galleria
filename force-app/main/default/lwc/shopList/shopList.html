@@ -1,0 +1,54 @@
+<template>
+    <div class="container mt-2">
+        <div class={rtlSupp.alignClass}>
+            <div class={rtlSupp.shopClass}>
+                <h1>{pageTitle}</h1>
+            </div>
+            <div class={rtlSupp.sortClass} if:true={initialShops.length}>
+                <c-generic-fullscreen-selection add-all options={shopCategoryOptionList}
+                    onselect={handleCategoryChange}>
+                    <div slot="placeholder">
+                        <p class="m-0">
+                            <template if:false={rtlSupp.isAr}> {labels.FILTER} </template>&nbsp;
+                            <lightning-icon icon-name="utility:filter" alternative-text="Filter" title="Filter">
+                            </lightning-icon>
+                        </p>
+                    </div>
+                </c-generic-fullscreen-selection>
+            </div>
+            <div class={rtlSupp.searchClass} if:true={initialShops.length}>
+                <lightning-icon icon-name="utility:search" alternative-text="Search" title="Search"
+                    onclick={toggleSearchBar}>
+                </lightning-icon>
+            </div>
+        </div>
+        <div class="row no-gutters m-0">
+            <div class="col-6 ms-auto p-0">
+                <lightning-input type="text" if:true={isSearchBarVisible} label={labels.SEARCH_LABEL}
+                    data-id="searchByName" onchange={handleSearchChange} value={searchTerm}></lightning-input>
+            </div>
+        </div>
+    </div>
+    <div if:true={isLoading}>
+        <lightning-spinner alternative-text={LOADING} size="medium"></lightning-spinner>
+    </div>
+    <div class="container mb-3 mt-2">
+        <template if:false={shops.length}>
+            <div if:false={isLoading} class='text-center'>{labels.NO_RESULT_FOUND_MSG}</div>
+        </template>
+        <div class="row g-0">
+            <template if:true={shops} for:each={shops} for:item="shop">
+                <div class="col-12 col-md-4 d-flex align-items-center rounded bg-white vivify popInLeft mb-2 p-2"
+                    onclick={handleShopSelection} key={shop.id} data-item={shop.id} data-name={shop.title}>
+                    <span class="img-div-sizing flex-shrink-0 me-3 mt-auto mb-auto bg-white shadow vivify fadeIn">
+                        <img if:true={shop.imgSrc} src={shop.imgSrc} data-item={shop.id} class="img-inside-sizing m-auto">
+                    </span>
+                    <div class="text-truncate align-items-center">
+                        <h6 class="mb-0 text-truncate" data-item={shop.id}>{shop.title}</h6>
+                        <p class="text-muted mb-0" data-item={shop.id}>{shop.subDescription} </p>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

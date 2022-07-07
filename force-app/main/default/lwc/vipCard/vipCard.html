@@ -1,0 +1,46 @@
+<template>
+  <div class="card">
+    <div class="card-body">
+      <h2 class={alignClass}>{labels.pageTitle}</h2>
+      <p class="fs-6">
+        <lightning-formatted-rich-text value={pageDescription}></lightning-formatted-rich-text>
+      </p>
+    </div>
+  </div>
+  <div class="flip-card mb-3 mt-0 " onclick={animateCard}>
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="card-container">
+          <img class="card-logo" src={VIPCard_Logo}>
+          <p class="card-vip-access">
+            <lightning-formatted-rich-text value={labels.VIP_Pass_Label}></lightning-formatted-rich-text>
+            <span class="float-end user-info">
+              <span>
+                <lightning-formatted-rich-text  value={FirstName}></lightning-formatted-rich-text>
+                &nbsp;
+                <lightning-formatted-rich-text  value={LastName}></lightning-formatted-rich-text>
+                </br>
+                <lightning-formatted-rich-text  value={VIPNumber}></lightning-formatted-rich-text>
+              </span>
+            </span>
+          </p> 
+        </div>
+      </div>
+      <div class="flip-card-back">
+        <div class="card-container">
+          <div class="card-body">
+            <p class="card-text">
+              <lightning-formatted-rich-text value={termsAndConditions}></lightning-formatted-rich-text>
+            </p>
+            <p class="card-text">
+              <lightning-formatted-rich-text value={labels.Inquiries_Label}></lightning-formatted-rich-text>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-right mt-3 btn-container">
+    <a href="#" class="btn btn-outline-primary btn-vip-list" onclick={navigateToVIPList}>{labels.VIPCard_btn_label}</a>
+  </div>
+</template>

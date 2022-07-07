@@ -1,0 +1,44 @@
+<template>
+    <template if:false={isGuestUser}>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{title}</h5>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-primary me-md-2" slot="actions" onclick={openModal}>{label_new}</button>
+                </div>
+                <div class="container m-1">
+                    <template if:true={results}>
+                        <table class="table">
+                            <thead>
+                                <tr class="align-middle">
+                                    <th scope="col">{labels.reservationCode}</th>
+                                    <th scope="col">{labels.reservationDay}</th>
+                                    <th scope="col">{labels.reservationTime}</th>
+                                    <th scope="col">{labels.itemType}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={results} for:item="res">
+                                    <tr key={res.reservationId} class="align-middle">
+                                        <td>{res.reservationCode}</td>
+                                        <td>{res.reservationDay}</td>
+                                        <td>{res.reservationTime}</td>
+                                        <td>{res.item}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template if:false={results}>
+                        {message}
+                    </template>
+                </div>
+            </div>
+        </div>
+        <c-new-utility-item-reservation is-modal-open={isModalOpen} onclose={closeModal} onsave={refreshData}>
+        </c-new-utility-item-reservation>
+    </template>
+    <template if:true={isGuestUser}>
+        <div class="alert alert-danger">{loginMessage}</div>
+    </template>
+</template>

@@ -1,0 +1,370 @@
+<apex:page id="registerPage" showHeader="false" showChat="false" sidebar="false" standardStylesheets="false" title="{!$Label.site.user_registration}"
+    controller="SelfRegistrationHandlerGR_B2C" docType="html-5.0">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="{!URLFOR($Resource.GRSiteAssets, '/GRSiteAssets/styles/bootstrap/bootstrap.min.css')}" rel="stylesheet" />
+        <link href="{!URLFOR($Resource.GRSiteAssets, '/GRSiteAssets/styles/global.css')}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <span class="d-flex justify-content-center mt-5">
+                        <img src="{!$Resource.CommunityLogo}" />
+                    </span>
+                </div>
+            </div>
+            <div class="row m-3">
+                <apex:form id="registerForm" forceSSL="true">
+                    <div class="row">
+                        <apex:pageMessages showDetail="false" id="error" />
+                    </div>
+                    <div class="row m-1">
+                        <apex:outputLabel value="{!$Label.REGISTER_FIRSTNAME}" for="firstName" />
+                        <apex:input type="text" id="firstname" required="true" styleClass="form-control un" label="{!$Label.REGISTER_FIRSTNAME}" value="{!firstname}"
+                        />
+                    </div>
+                    <div class="row m-1">
+                        <apex:outputLabel value="{!$Label.REGISTER_LASTNAME}" for="lastname" />
+                        <apex:input type="text" id="lastname" required="true" styleClass="form-control un" label="{!$Label.REGISTER_LASTNAME}" value="{!lastname}"
+                        />
+                    </div>
+                    <div class="row m-1">
+                        <apex:outputLabel value="{!$Label.LOGIN_EMAIL}" for="email" />
+                        <apex:inputText id="email" required="true" styleClass="form-control un" label="{!$Label.LOGIN_EMAIL}" value="{!username}"
+                        />
+                        <div class="form-text">
+                            {!$Label.LOGIN_EMAIL_HELP}
+                        </div>
+                    </div>
+                    <div class="row m-1 mt-3">
+                        <apex:outputLabel value="{!$Label.LOGIN_PASSWORD}" for="pwd" />
+                        
+                            <apex:inputSecret id="pwd" required="true" styleClass="form-control pw" label="{!$Label.LOGIN_PASSWORD}" value="{!password}" />
+                        
+                        <div class="form-text">
+                            {!$Label.LOGIN_PASSWORD_HELP}
+                        </div>
+                    </div>
+                    <div class="row m-1 mt-3">
+                        <apex:outputLabel value="{!$Label.REGISTER_CONFIRM_PASSWORD}" for="conpwd" />
+                      
+                            <apex:inputSecret id="conpwd" required="true" styleClass="form-control pw" label="{!$Label.REGISTER_CONFIRM_PASSWORD}" value="{!confirmPassword}"
+                            />
+                        
+                    </div>
+                    <div class="row m-1">
+                        <apex:outputLabel value="{!$Label.REGISTER_PHONE}" for="phone" />
+                       
+                            <apex:selectList required="true" value="{!phoneCode}" size="1" styleClass="form-control un mb-2">
+                                <apex:selectOption itemValue="971" itemLabel="United Arab Emirates (+971)" />
+                                <apex:selectOption itemValue="355" itemLabel="Albania (+355)" />
+                                <apex:selectOption itemValue="213" itemLabel="Algeria (+213)" />
+                                <apex:selectOption itemValue="684" itemLabel="American Samoa (+684)" />
+                                <apex:selectOption itemValue="376" itemLabel="Andorra (+376)" />
+                                <apex:selectOption itemValue="244" itemLabel="Angola (+244)" />
+                                <apex:selectOption itemValue="1" itemLabel="Anguilla (+1)" />
+                                <apex:selectOption itemValue="1" itemLabel="Antigua and Barbuda (+1)" />
+                                <apex:selectOption itemValue="54" itemLabel="Argentina (+54)" />
+                                <apex:selectOption itemValue="374" itemLabel="Armenia (+374)" />
+                                <apex:selectOption itemValue="297" itemLabel="Aruba (+297)" />
+                                <apex:selectOption itemValue="61" itemLabel="Australia (+61)" />
+                                <apex:selectOption itemValue="43" itemLabel="Austria (+43)" />
+                                <apex:selectOption itemValue="994" itemLabel="Azerbaijan (+994)" />
+                                <apex:selectOption itemValue="1" itemLabel="Bahamas (+1)" />
+                                <apex:selectOption itemValue="973" itemLabel="Bahrain (+973)" />
+                                <apex:selectOption itemValue="880" itemLabel="Bangladesh (+880)" />
+                                <apex:selectOption itemValue="1" itemLabel="Barbados (+1)" />
+                                <apex:selectOption itemValue="375" itemLabel="Belarus (+375)" />
+                                <apex:selectOption itemValue="32" itemLabel="Belgium (+32)" />
+                                <apex:selectOption itemValue="501" itemLabel="Belize (+501)" />
+                                <apex:selectOption itemValue="229" itemLabel="Benin (+229)" />
+                                <apex:selectOption itemValue="1" itemLabel="Bermuda (+1)" />
+                                <apex:selectOption itemValue="591" itemLabel="Bolivia (+591)" />
+                                <apex:selectOption itemValue="387" itemLabel="Bosnia & Herzegovina (+387)" />
+                                <apex:selectOption itemValue="267" itemLabel="Botswana (+267)" />
+                                <apex:selectOption itemValue="55" itemLabel="Brazil (+55)" />
+                                <apex:selectOption itemValue="359" itemLabel="Bulgaria (+359)" />
+                                <apex:selectOption itemValue="257" itemLabel="Burundi (+257)" />
+                                <apex:selectOption itemValue="855" itemLabel="Cambodia (+855)" />
+                                <apex:selectOption itemValue="237" itemLabel="Cameroon (+237)" />
+                                <apex:selectOption itemValue="1" itemLabel="Canada (+1)" />
+                                <apex:selectOption itemValue="238" itemLabel="Cape Verde Islands (+238)" />
+                                <apex:selectOption itemValue="1" itemLabel="Cayman Islands (+1)" />
+                                <apex:selectOption itemValue="236" itemLabel="Central African Republic (+236)" />
+                                <apex:selectOption itemValue="235" itemLabel="Chad (+235)" />
+                                <apex:selectOption itemValue="56" itemLabel="Chile (+56)" />
+                                <apex:selectOption itemValue="86" itemLabel="China (+86)" />
+                                <apex:selectOption itemValue="57" itemLabel="Colombia (+57)" />
+                                <apex:selectOption itemValue="269" itemLabel="Comoros (+269)" />
+                                <apex:selectOption itemValue="242" itemLabel="Congo (+242)" />
+                                <apex:selectOption itemValue="506" itemLabel="Costa Rica (+506)" />
+                                <apex:selectOption itemValue="385" itemLabel="Croatia (+385)" />
+                                <apex:selectOption itemValue="53" itemLabel="Cuba (+53)" />
+                                <apex:selectOption itemValue="599" itemLabel="Curacao (+599)" />
+                                <apex:selectOption itemValue="357" itemLabel="Cyprus (+357)" />
+                                <apex:selectOption itemValue="420" itemLabel="Czech Rep. (+420)" />
+                                <apex:selectOption itemValue="45" itemLabel="Denmark (+45)" />
+                                <apex:selectOption itemValue="1" itemLabel="Dominica (+1)" />
+                                <apex:selectOption itemValue="1" itemLabel="Dominican Republic (+1)" />
+                                <apex:selectOption itemValue="56" itemLabel="Easter Island (+56)" />
+                                <apex:selectOption itemValue="593" itemLabel="Ecuador (+593)" />
+                                <apex:selectOption itemValue="20" itemLabel="Egypt (+20)" />
+                                <apex:selectOption itemValue="503" itemLabel="El Salvador (+503)" />
+                                <apex:selectOption itemValue="291" itemLabel="Eritrea (+291)" />
+                                <apex:selectOption itemValue="372" itemLabel="Estonia (+372)" />
+                                <apex:selectOption itemValue="251" itemLabel="Ethiopia (+251)" />
+                                <apex:selectOption itemValue="298" itemLabel="Faroe Islands (+298)" />
+                                <apex:selectOption itemValue="679" itemLabel="Fiji Islands (+679)" />
+                                <apex:selectOption itemValue="358" itemLabel="Finland (+358)" />
+                                <apex:selectOption itemValue="33" itemLabel="France (+33)" />
+                                <apex:selectOption itemValue="596" itemLabel="French Antilles (+596)" />
+                                <apex:selectOption itemValue="594" itemLabel="French Guiana (+594)" />
+                                <apex:selectOption itemValue="689" itemLabel="French Polynesia (+689)" />
+                                <apex:selectOption itemValue="241" itemLabel="Gabon (+241)" />
+                                <apex:selectOption itemValue="220" itemLabel="Gambia (+220)" />
+                                <apex:selectOption itemValue="995" itemLabel="Georgia (+995)" />
+                                <apex:selectOption itemValue="49" itemLabel="Germany (+49)" />
+                                <apex:selectOption itemValue="233" itemLabel="Ghana (+233)" />
+                                <apex:selectOption itemValue="350" itemLabel="Gibraltar (+350)" />
+                                <apex:selectOption itemValue="30" itemLabel="Greece (+30)" />
+                                <apex:selectOption itemValue="299" itemLabel="Greenland (+299)" />
+                                <apex:selectOption itemValue="1" itemLabel="Grenada (+1)" />
+                                <apex:selectOption itemValue="590" itemLabel="Guadeloupe (+590)" />
+                                <apex:selectOption itemValue="1" itemLabel="Guam (+1)" />
+                                <apex:selectOption itemValue="502" itemLabel="Guatemala (+502)" />
+                                <apex:selectOption itemValue="224" itemLabel="Guinea (+224)" />
+                                <apex:selectOption itemValue="592" itemLabel="Guyana (+592)" />
+                                <apex:selectOption itemValue="509" itemLabel="Haiti (+509)" />
+                                <apex:selectOption itemValue="504" itemLabel="Honduras (+504)" />
+                                <apex:selectOption itemValue="852" itemLabel="Hong Kong (+852)" />
+                                <apex:selectOption itemValue="36" itemLabel="Hungary (+36)" />
+                                <apex:selectOption itemValue="354" itemLabel="Iceland (+354)" />
+                                <apex:selectOption itemValue="91" itemLabel="India (+91)" />
+                                <apex:selectOption itemValue="62" itemLabel="Indonesia (+62)" />
+                                <apex:selectOption itemValue="98" itemLabel="Iran (+98)" />
+                                <apex:selectOption itemValue="964" itemLabel="Iraq (+964)" />
+                                <apex:selectOption itemValue="353" itemLabel="Ireland (+353)" />
+                                <apex:selectOption itemValue="972" itemLabel="Israel (+972)" />
+                                <apex:selectOption itemValue="39" itemLabel="Italy (+39)" />
+                                <apex:selectOption itemValue="225" itemLabel="Ivory Coast (+225)" />
+                                <apex:selectOption itemValue="1" itemLabel="Jamaica (+1)" />
+                                <apex:selectOption itemValue="81" itemLabel="Japan (+81)" />
+                                <apex:selectOption itemValue="962" itemLabel="Jordan (+962)" />
+                                <apex:selectOption itemValue="7" itemLabel="Kazakhstan (+7)" />
+                                <apex:selectOption itemValue="254" itemLabel="Kenya (+254)" />
+                                <apex:selectOption itemValue="965" itemLabel="Kuwait (+965)" />
+                                <apex:selectOption itemValue="856" itemLabel="Laos (+856)" />
+                                <apex:selectOption itemValue="371" itemLabel="Latvia (+371)" />
+                                <apex:selectOption itemValue="961" itemLabel="Lebanon (+961)" />
+                                <apex:selectOption itemValue="266" itemLabel="Lesotho (+266)" />
+                                <apex:selectOption itemValue="218" itemLabel="Libya (+218)" />
+                                <apex:selectOption itemValue="423" itemLabel="Liechtenstein (+423)" />
+                                <apex:selectOption itemValue="370" itemLabel="Lithuania (+370)" />
+                                <apex:selectOption itemValue="352" itemLabel="Luxembourg (+352)" />
+                                <apex:selectOption itemValue="853" itemLabel="Macau (+853)" />
+                                <apex:selectOption itemValue="389" itemLabel="Macedonia (+389)" />
+                                <apex:selectOption itemValue="261" itemLabel="Madagascar (+261)" />
+                                <apex:selectOption itemValue="265" itemLabel="Malawi (+265)" />
+                                <apex:selectOption itemValue="60" itemLabel="Malaysia (+60)" />
+                                <apex:selectOption itemValue="960" itemLabel="Maldives (+960)" />
+                                <apex:selectOption itemValue="223" itemLabel="Mali Republic (+223)" />
+                                <apex:selectOption itemValue="356" itemLabel="Malta (+356)" />
+                                <apex:selectOption itemValue="596" itemLabel="Martinique (+596)" />
+                                <apex:selectOption itemValue="52" itemLabel="Mexico (+52)" />
+                                <apex:selectOption itemValue="373" itemLabel="Moldava (+373)" />
+                                <apex:selectOption itemValue="377" itemLabel="Monaco (+377)" />
+                                <apex:selectOption itemValue="976" itemLabel="Mongolia (+976)" />
+                                <apex:selectOption itemValue="382" itemLabel="Montenegro (+382)" />
+                                <apex:selectOption itemValue="212" itemLabel="Morocco (+212)" />
+                                <apex:selectOption itemValue="258" itemLabel="Mozambique (+258)" />
+                                <apex:selectOption itemValue="95" itemLabel="Myanmar (+95)" />
+                                <apex:selectOption itemValue="264" itemLabel="Namibia (+264)" />
+                                <apex:selectOption itemValue="977" itemLabel="Nepal (+977)" />
+                                <apex:selectOption itemValue="31" itemLabel="Netherlands (+31)" />
+                                <apex:selectOption itemValue="599" itemLabel="Netherlands Antilles (+599)" />
+                                <apex:selectOption itemValue="687" itemLabel="New Caledonia (+687)" />
+                                <apex:selectOption itemValue="64" itemLabel="New Zealand (+64)" />
+                                <apex:selectOption itemValue="505" itemLabel="Nicaragua (+505)" />
+                                <apex:selectOption itemValue="227" itemLabel="Niger (+227)" />
+                                <apex:selectOption itemValue="234" itemLabel="Nigeria (+234)" />
+                                <apex:selectOption itemValue="672" itemLabel="Norfolk Island (+672)" />
+                                <apex:selectOption itemValue="47" itemLabel="Norway (+47)" />
+                                <apex:selectOption itemValue="968" itemLabel="Oman (+968)" />
+                                <apex:selectOption itemValue="92" itemLabel="Pakistan (+92)" />
+                                <apex:selectOption itemValue="680" itemLabel="Palau (+680)" />
+                                <apex:selectOption itemValue="507" itemLabel="Panama (+507)" />
+                                <apex:selectOption itemValue="675" itemLabel="Papua New Guinea (+675)" />
+                                <apex:selectOption itemValue="595" itemLabel="Paraguay (+595)" />
+                                <apex:selectOption itemValue="51" itemLabel="Peru (+51)" />
+                                <apex:selectOption itemValue="63" itemLabel="Philippines (+63)" />
+                                <apex:selectOption itemValue="48" itemLabel="Poland (+48)" />
+                                <apex:selectOption itemValue="351" itemLabel="Portugal (+351)" />
+                                <apex:selectOption itemValue="1" itemLabel="Puerto-Rico (+1)" />
+                                <apex:selectOption itemValue="974" itemLabel="Qatar (+974)" />
+                                <apex:selectOption itemValue="262" itemLabel="Reunion Island (+262)" />
+                                <apex:selectOption itemValue="40" itemLabel="Romania (+40)" />
+                                <apex:selectOption itemValue="7" itemLabel="Russia (+7)" />
+                                <apex:selectOption itemValue="250" itemLabel="Rwanda (+250)" />
+                                <apex:selectOption itemValue="290" itemLabel="Saint Helena (+290)" />
+                                <apex:selectOption itemValue="1" itemLabel="Saint Lucia (+1)" />
+                                <apex:selectOption itemValue="378" itemLabel="San Marino (+378)" />
+                                <apex:selectOption itemValue="966" itemLabel="Saudi Arabia (+966)" />
+                                <apex:selectOption itemValue="221" itemLabel="Senegal (+221)" />
+                                <apex:selectOption itemValue="381" itemLabel="Serbia (+381)" />
+                                <apex:selectOption itemValue="248" itemLabel="Seychelles Islands (+248)" />
+                                <apex:selectOption itemValue="232" itemLabel="Sierra Leone (+232)" />
+                                <apex:selectOption itemValue="65" itemLabel="Singapore (+65)" />
+                                <apex:selectOption itemValue="421" itemLabel="Slovak Republic (+421)" />
+                                <apex:selectOption itemValue="386" itemLabel="Slovenia (+386)" />
+                                <apex:selectOption itemValue="27" itemLabel="South Africa (+27)" />
+                                <apex:selectOption itemValue="82" itemLabel="South Korea (+82)" />
+                                <apex:selectOption itemValue="34" itemLabel="Spain (+34)" />
+                                <apex:selectOption itemValue="94" itemLabel="Sri Lanka (+94)" />
+                                <apex:selectOption itemValue="597" itemLabel="Suriname (+597)" />
+                                <apex:selectOption itemValue="268" itemLabel="Swaziland (+268)" />
+                                <apex:selectOption itemValue="46" itemLabel="Sweden (+46)" />
+                                <apex:selectOption itemValue="41" itemLabel="Switzerland (+41)" />
+                                <apex:selectOption itemValue="963" itemLabel="Syria (+963)" />
+                                <apex:selectOption itemValue="886" itemLabel="Taiwan (+886)" />
+                                <apex:selectOption itemValue="992" itemLabel="Tajikistan (+992)" />
+                                <apex:selectOption itemValue="255" itemLabel="Tanzania (+255)" />
+                                <apex:selectOption itemValue="66" itemLabel="Thailand (+66)" />
+                                <apex:selectOption itemValue="228" itemLabel="Togo (+228)" />
+                                <apex:selectOption itemValue="1" itemLabel="Trinidad & Tobago (+1)" />
+                                <apex:selectOption itemValue="216" itemLabel="Tunisia (+216)" />
+                                <apex:selectOption itemValue="90" itemLabel="Turkey (+90)" />
+                                <apex:selectOption itemValue="993" itemLabel="Turkmenistan (+993)" />
+                                <apex:selectOption itemValue="1" itemLabel="US Virgin Islands (+1)" />
+                                <apex:selectOption itemValue="256" itemLabel="Uganda (+256)" />
+                                <apex:selectOption itemValue="380" itemLabel="Ukraine (+380)" />
+                                <apex:selectOption itemValue="44" itemLabel="United Kingdom (+44)" />
+                                <apex:selectOption itemValue="1" itemLabel="United States (+1)" />
+                                <apex:selectOption itemValue="598" itemLabel="Uruguay (+598)" />
+                                <apex:selectOption itemValue="998" itemLabel="Uzbekistan (+998)" />
+                                <apex:selectOption itemValue="39" itemLabel="Vatican City (+39)" />
+                                <apex:selectOption itemValue="58" itemLabel="Venezuela (+58)" />
+                                <apex:selectOption itemValue="84" itemLabel="Vietnam (+84)" />
+                                <apex:selectOption itemValue="808" itemLabel="Wake Island (+808)" />
+                                <apex:selectOption itemValue="685" itemLabel="Western Samoa (+685)" />
+                                <apex:selectOption itemValue="967" itemLabel="Yemen (+967)" />
+                                <apex:selectOption itemValue="381" itemLabel="Yugoslavia (+381)" />
+                                <apex:selectOption itemValue="243" itemLabel="Zaire (+243)" />
+                                <apex:selectOption itemValue="260" itemLabel="Zambia (+260)" />
+                                <apex:selectOption itemValue="263" itemLabel="Zimbabwe (+263)" />
+                            </apex:selectList>
+                        </div>
+                    <div class="row m-1">
+                        <apex:input id="phone" required="true" styleClass="form-control un" label="{!$Label.REGISTER_PHONE}" value="{!mobilePhone}"
+                            html-placeholder="#######" type="tel"/>
+                    </div>
+                    <div class="row m-1 mt-3">
+                        <apex:commandButton value="{!$Label.site.register}" id="login-submit" action="{!registerUser}" styleClass="btn btn-lg btn-primary btn-block"
+                        />
+                    </div>
+                    <div id="login-option">
+                        <span class="form-signin-forgot">
+                            <a href="/b2c/s/login/ForgotPassword" target="_self">{!$Label.LOGIN_FORGOT_PASSWORD}</a>
+                        </span>
+                        <span>
+                            <a href="/b2c/CommunityLoginVFP?{!IF(ISBLANK($CurrentPage.parameters.callback),'','callback='+$CurrentPage.parameters.callback)+IF(ISBLANK($CurrentPage.parameters.id),'','&id='+$CurrentPage.parameters.id)}" target="_self" class="register-text">{!$Label.LOGIN}</a>
+                        </span>
+                    </div>
+                    <!-- <div class="row">
+                        <span class="col mt-4 d-flex justify-content-center">
+                            <apex:repeat value="{!authProviders}" var="ap">
+                                <a href="https://galleria.force.com/b2c/services/auth/sso/{!ap.developername}">
+                                    <img src="{!ap.IconUrl}" />
+                                </a>
+                            </apex:repeat>
+                        </span>
+                    </div> -->
+                    <div class="row">
+                        <span class="col">
+                            <a href="/b2c" target="_self" class="mt-5 backHomeCls d-flex justify-content-center">
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <img src="{!URLFOR($Resource.Bottom_Nav_Icons, '/Home_Bot.png')}" class="imgsize-cls" />
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <p>{!$Label.NAVIGATE_TO_HOME_LBL}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </span>
+                    </div>
+                </apex:form>
+            </div>
+        </div>
+        <style>
+            a {
+                color: var(--bs-black);
+            }
+
+            .btn {
+                width: 100%;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                color: var(--lwc-colorTextButtonBrand, rgb(255, 255, 255));
+                cursor: pointer;
+                background-color: var(--lwc-colorBackgroundButtonBrand, rgb(0, 0, 0));
+                display: inline-block;
+                text-align: center;
+                vertical-align: middle;
+                background-image: none;
+                border: 1px solid transparent;
+                white-space: nowrap;
+                padding: 10px 12px;
+                font-size: 16px;
+                font-family: var(--lwc-fontFamily, Lato);
+                font-weight: 700;
+                line-height: 1.42857143;
+                border-radius: 2px;
+                outline: none;
+                text-transform: uppercase;
+            }
+
+            .inputContainer {
+                margin-bottom: 10px;
+                padding: 12px;
+                background-color: #ffffff;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+                width: 100%;
+            }
+
+            .register-text {
+                float: right;
+            }
+
+            .imgsize-cls {
+                width: 24px;
+                height: 24px;
+                min-width: 24px;
+                min-height: 24px;
+            }
+
+            .backHomeCls {
+                text-decoration: none;
+            }
+
+            .error {
+                border-color: #dc3545;
+                padding-right: calc(1.5em + 0.75rem);
+                background-repeat: no-repeat;
+                background-position: right calc(0.375em + 0.1875rem) center;
+                background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+            }
+
+            .errorMsg {
+                width: 100%;
+                margin-top: 0.25rem;
+                font-size: .875em;
+                color: #dc3545;
+            }
+        </style>
+    </body>
+</apex:page>

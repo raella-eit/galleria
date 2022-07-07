@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <isExposed>true</isExposed>
+    <description
+  >Use this component to display a message to your app users that they must update their app.</description>
+    <masterLabel>Mobile Publisher App Update</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+          <property
+        label="Title"
+        name="title"
+        type="String"
+        required="true"
+        default="Update Your App"
+      />
+          <property
+        label="Text"
+        name="text"
+        type="String"
+        default="Update to the latest version of this app to continue using it."
+      />
+          <property
+        label="Button Label"
+        name="buttonLabel"
+        type="String"
+        default="Update"
+      />    
+          <property
+        label="App Store Link"
+        name="iosAppStoreLink"
+        type="String"
+        placeholder="App Store URL"
+      />  
+      <property
+        label="Minimum App Version for iOS"
+        name="minAppVersionIOS"
+        type="String"
+        default="10.0"
+      />    
+          <property
+        label="Google Play Link"
+        name="googlePlayStoreLink"
+        type="String"
+        placeholder="Google Play URL"
+      />  
+      <property
+        label="Minimum App Version for Android"
+        name="minAppVersionAndroid"
+        type="String"
+        default="10.0"
+      />                                                             
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

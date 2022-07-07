@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId">
+    <aura:attribute name="recordId" type="Id" />
+
+    <c:wayFindingDialog recordId="{!v.recordId}" onclose="{!c.closeQA}"/>
+</aura:component>

@@ -1,0 +1,51 @@
+.progress {
+      background-color:  grey;
+  }
+
+  .progress-bar {
+      background-color: white !important;
+      color: black;
+  }
+
+.progress_list-override {
+    background-color: gray!important;
+    width: 80%;
+}
+
+.progress-bar_list-override {
+    background-color: black !important;
+    color: white !important;
+}
+img {
+    opacity: 0.7 !important;
+}
+
+.fixed-content-height{
+    height:25ch;
+}
+
+.text-truncate{
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-bg{
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,0.8) 53%,rgba(0,0,0,1) 100%);
+}
+
+.width-adjust{
+    width:80% !important
+}
+
+.details-cls {
+    font-size: 0.7rem;
+    text-decoration: underline;
+}
+
+.pe-1 {
+    padding-right: 0.15rem !important;
+}

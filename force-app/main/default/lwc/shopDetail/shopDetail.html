@@ -1,0 +1,117 @@
+<template>
+    <div class="container-fluid p-0">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 img-height bg-dark">
+                    <img if:true={shop.storeImgSrc} src={shop.storeImgSrc} alt={shop.title}
+                        class="card-img h-100 vivify" onload={showImage}>
+                </div>
+                <div class="col-md-8 bg-adjust">
+                    <div class="card-body div-button">
+                        <div class="container">
+                            <div class="d-flex flex-row">
+                                <div class="col-12 col-md-6 d-flex align-items-start d-inline-block p-1">
+                                    <span class={imgCls}>
+                                        <img class="img-inside-sizing" if:true={shop.imgSrc} src={shop.imgSrc}
+                                            data-item={shop.id}>
+                                    </span>
+                                    <div>
+                                        <h5 class="card-title mt-0">{shop.title}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row-reverse mt-2" if:true={showDirection}>
+                                <lightning-button variant="brand" label={label.DIRECTION_LABEL}
+                                    icon-name="utility:arrowup" title="Direction" onclick={handleClick}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid bg-adjust">
+                    <div class="row g-0">
+                        <div class="col-6 d-grid">
+                            <button class="btn-block custom-nav mx-auto fw-bold"
+                                onclick={handleDetailBtnClick}>{label.DETAIL_LABEL}</button>
+                            <hr if:true={showDetails} class="active-tab m-0">
+                        </div>
+                        <div class="col-6 d-grid">
+                            <button class="btn-block custom-nav mx-auto fw-bold"
+                                onclick={handleAboutBtnClick}>{label.ABOUT_LABEL}</button>
+                            <hr if:true={showAbout} class="active-tab m-0">
+                        </div>
+                        <hr class="mb-1">
+                    </div>
+
+                    <div if:true={showDetails} class="container p-1">
+                        <!-- <template if:true={testUser}> -->
+                            <!-- <iframe
+                                src="https://galleria.way.wf/3d03/web.v20210910/index.php?from=5152CD0F-6770-E75B-3AF6-6FB9F14D0FE2&to=DF25C62B-E0B6-BC27-49BD-559D8D23B1A6&hideYouAreHere=yes"
+                                width="200" height="200"
+                                sandbox="allow-same-origin allow-scripts allow-popups allow-forms" name="main"></iframe> -->
+                        <!-- </template> -->
+                        <div class="d-flex flex-row ">
+                            <div class="p-2 card-text fw-bold">
+                                {label.CONTACT}:
+                            </div>
+                            <div class="mt-2">{shop.phone}</div>
+                        </div>
+
+                        <div class="d-flex flex-row ">
+                            <div class="p-2 card-text fw-bold">
+                                {label.LOCATION}:
+                            </div>
+                            <div class="mt-2">{shop.subDescription}</div>
+                        </div>
+
+                        <div class="d-flex flex-row ">
+                            <div class="p-2 card-text fw-bold">
+                                {label.PARK_NEAR}:
+                            </div>
+                            <div class="mt-2">{shop.parkingDescription}</div>
+                        </div>
+
+                        <div class="d-flex flex-row ">
+                            <div class="p-2 card-text fw-bold">
+                                {label.HOURS}:
+                            </div>
+                            <div class="mt-2">{shop.dates}</div>
+                        </div>
+                    </div>
+                    <div if:true={showAbout}>
+                        <lightning-formatted-rich-text class="p-2 card-text float-start m-1" value={shop.description}>
+                        </lightning-formatted-rich-text>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <iframe name="22M_Map" class={iframeCls} src={finalUrl}></iframe> -->
+        <section if:true={showModal} role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">{label.WF_CONFIRM_DIALOG_LBL}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                    onclick={closeModal}></button>
+                            </div>
+                            <div class="modal-body">
+                                <c-shop-search-combo from-id={fromId} to-id={toId} onmapit={onSelection}></c-shop-search-combo>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" data-bs-dismiss="modal"
+                                    onclick={closeModal}>{label.CLOSE_BTN_LBL}</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick={redirectToWayfinding}>{label.START_BTN_LBL}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+</template>

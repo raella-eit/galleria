@@ -1,0 +1,32 @@
+<template>
+    <div class="container-fluid">
+        <div class={alignClass}>
+            <div class={offerClass}>
+                <h1>{labels.TITLE}</h1>
+            </div>
+            <div class={sortClass} >
+                <c-generic-fullscreen-selection if:true={initialOffers.length} add-all options={offerCategoryOptionList}
+                    onselect={handleCategoryChange}>
+                    <div slot="placeholder">
+                        <p>
+                            <template if:false={isAr}> {labels.FILTER} </template>&nbsp;
+                            <lightning-icon icon-name="utility:filter" alternative-text="Filter" title="Filter">
+                            </lightning-icon>
+                        </p>
+                    </div>
+                </c-generic-fullscreen-selection>
+            </div>
+        </div>
+        <div class="row">
+            <template if:false={offerItems.length}>
+                <div if:false={isLoading} class='text-center'>{labels.NO_RESULT_FOUND_MSG}</div>
+            </template>
+            <c-generic-data-card items={offerItems} parent-redirect disable-load-more
+                onselect={handleOfferSelection}></c-generic-data-card>
+        </div>
+    </div>
+
+    <div if:true={isLoading}>
+        <lightning-spinner alternative-text={labels.LOADING} size="medium"></lightning-spinner>
+    </div>
+</template>

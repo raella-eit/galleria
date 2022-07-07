@@ -1,0 +1,73 @@
+<template>
+    <div class="container-fluid">
+        <div class="row mt-2">
+            <div class={alignClass}>
+                <h1>{labels.pageTitle}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto">
+                <p class="text-center">{labels.pageDescription}</p>
+            </div>
+        </div>
+        <div class="row mx-auto" if:true={allParkingItems.length}>
+            <template for:each={allParkingItems} for:item="parking">
+                <div class="col col-6 col-sm-6 col-md-4 col-lg-3 m-0 p-auto fixed-content-height" key={parking.id}
+                    data-item={parking.id} onclick={toggleParkingDetails}>
+                    <div class="card bg-dark text-white h-100 overflow-hidden vivify fadeIn shadow rounded card-bg"
+                        data-item={parking.id}>
+                        <img src={parking.cardImg} class="card-img d-none h-100 vivify" onload={showImage}
+                            data-item={parking.id}>
+                        <div class="card-img-overlay d-flex flex-column p-0" data-item={parking.id}>
+                            <div class="p-1" data-item={parking.id}>
+                                <h6 class="card-title mt-1 mb-0 text-uppercase" data-item={parking.id}>{parking.label}
+                                </h6>
+                                <p class="details-cls text-start" data-item={parking.id}>
+                                    {labels.showMore}</p>
+                            </div>
+                            <div class="mb-0 mt-auto p-1" data-item={parking.id}>
+                                <p class="card-text mb-1" data-item={parking.id}><b>{parking.available}</b>
+                                    {labels.available}</p>
+                                <div class="progress mb-1 ms-1 me-1" data-item={parking.id}>
+                                    <div class="progress-bar text-end pe-1" role="progressbar"
+                                        style={parking.percentageStyle} data-item={parking.id}>
+                                        {parking.percent}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <div if:true={showDetails} class="container">
+            <h4 class="mt-4">{labels.subtitle}</h4>
+            <div class="row g-0">
+                <template for:each={detailsByLevel} for:item="level">
+                    <h5 key={level.name}>{level.displayLabel}</h5>
+                    <template for:each={level.details} for:item="parking">
+                        <div class="col-12 col-md-4 d-flex align-items-center rounded bg-white vivify popInLeft mb-2 p-2"
+                            key={parking.id} data-item={parking.id}>
+                            <span class="flex-shrink-0 m-auto bg-white">
+                                <h2 data-item={parking.id} class="m-0">{parking.label}</h2>
+                            </span>
+                            <div class="align-items-center width-adjust">
+                                <p class="m-0" data-item={parking.id}>
+                                    <span class="card-text mb-1 fw-bold">{parking.available}&nbsp;</span>
+                                    <span class="text-muted">{labels.available} </span>
+                                </p>
+                                <div class="progress progress_list-override m-0">
+                                    <div class="progress-bar progress-bar_list-override text-end pe-1"
+                                        role="progressbar" style={parking.percentageStyle}>
+                                        {parking.percent}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

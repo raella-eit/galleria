@@ -1,0 +1,17 @@
+<template>
+    <div>
+        <lightning-input type="file" 
+                        label={inputLabel}
+                        onchange={handleFileChange} 
+                        accept={acceptedFormats}
+                        multiple={hasMultiple}
+                        disabled={isDisabled}
+                        required={isRequired}> 
+        </lightning-input>
+        <div class="slds-text-title slds-text-color_weak">{infoMaxSize}</div>
+    </div>
+    
+    <div if:true={fileNames} class="slds-text-body_regular"> 
+        {fileNames}
+    </div>
+</template>

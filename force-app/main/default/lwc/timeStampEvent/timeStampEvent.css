@@ -1,0 +1,4 @@
+.btn-primary.disabled, .btn-primary:disabled{
+    background-color:var(--bs-gray);
+    border-color:var(--bs-dark-rgb);
+}

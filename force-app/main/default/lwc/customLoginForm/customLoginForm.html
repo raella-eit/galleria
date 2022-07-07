@@ -1,0 +1,27 @@
+<template>
+    <form>
+        <template if:true={errorCheck}>
+            <div class="slds-col text-error">
+                {errorMessage}
+            </div>
+        </template>
+
+        <div class='slds-col'>
+            <input type="text" data-id="inputUsername" placeholder="Email" class="inputContainer"
+                onchange={handleUserNameChange} required />
+        </div>
+        <div class='slds-col'>
+            <input type="password" data-id="inputPassword" placeholder="Password" class="inputContainer"
+                onchange={handlePasswordChange} required />
+        </div>
+
+        <div class="slds-col">
+            <button type="submit" class="btn" onclick={handleLogin}>{labels.login}</button>
+        </div>
+
+        <div class="slds-col">
+            <a href="#" onclick={handleForgotPassword}>{labels.forgotPassword}</a>
+            <a href="#" onclick={handleRegister} class="register-text">{labels.register}</a>
+        </div>
+    </form>
+</template>

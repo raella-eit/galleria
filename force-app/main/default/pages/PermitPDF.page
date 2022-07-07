@@ -1,0 +1,179 @@
+<apex:page showHeader="false" applyHtmlTag="false" standardStylesheets="false" standardController="Permit__c" extensions="PermitPDFController"
+           renderAs="{!IF(generatePDF,'PDF','')}">
+    <apex:form >
+        
+        <html>
+            
+            <body>
+                <apex:pageBlock rendered="{!!generatePDF}">
+                    <apex:outputText value="{!$Label.NoPDFMessage}" style="font-weight:bold"/>
+                </apex:pageBlock>
+                <apex:pageBlock rendered="{!generatePDF}">
+                    <img src="{!IF(isApproved,URLFOR($Resource.ApprovedWatermark),IF(isPending,URLFOR($Resource.PendingWatermark),IF(isRejected,URLFOR($Resource.RejectedWatermark),URLFOR($Resource.TransparentWatermark))))}" width="100%" height="100%"
+                         style="position: fixed;background-repeat:repeat;left: 0cm; top:0cm; z-index:0;opacity:0.5" />
+                    
+                    <apex:image value="{!URLFOR($Resource.LaGalleriaLogo)}" width="100%" />
+                    
+                    <apex:repeat value="{!permit}" var="per">
+                        <h1 style="text-align: center">
+                            {!per.Account__r.Name}
+                        </h1>
+                    </apex:repeat>
+                    
+                    <apex:pageBlock title="Retailer Details">
+                        <table font-family="arial, sans-serif;" border-collapse="collapse;" width="100%;" border="1px solid black;">
+                            <tr style="font-weight: bold;">
+                                <td style="text-align: center;">Unit Number</td>
+                                <td style="text-align: center;">Park Near</td>
+                                <td style="text-align: center;">Store Location</td>
+                                <td style="text-align: center;">Phone Number</td>
+                            </tr>
+                            <apex:repeat value="{!permit}" var="per">
+                                <tr>
+                                    <td style="text-align: center;">{!per.Account__r.UnitNumber__c}</td>
+                                    <td style="text-align: center;">{!per.Account__r.Park_Near__c}</td>
+                                    <td style="text-align: center;">{!per.Account__r.Store_Location__c}</td>
+                                    <td style="text-align: center;">{!per.Account__r.Phone}</td>
+                                </tr>
+                            </apex:repeat>
+                        </table>
+                        
+                    </apex:pageBlock>
+                    
+                    <apex:pageBlock title="Permit Details">
+                        <table font-family="arial, sans-serif;" border-collapse="collapse;" width="100%;" border="1px solid black;">
+                            <tr style="font-weight: bold;">
+                                <td style="text-align: center;">Permit Name</td>
+                                <td style="text-align: center;">Submitter Name</td>
+                                <td style="text-align: center;">Submitter Email</td>
+                                <td style="text-align: center;">Submitter Number</td>
+                                <td style="text-align: center;">Submission Date</td>
+                            </tr>
+                            <apex:repeat value="{!permit}" var="per">
+                                <tr>
+                                    <td style="text-align: center;">{!per.Name}</td>
+                                    <td style="text-align: center;">{!per.SubmitterName__c}</td>
+                                    <td style="text-align: center;">{!per.SubmitterEmail__c}</td>
+                                    <td style="text-align: center;">{!per.SubmitterNumber__c}</td>
+                                    <td style="text-align: center;">
+                                        <apex:outputText value="{0, date,dd MMM yyyy}">
+                                            <apex:param value="{!per.Submission_Date__c}"/>
+                                        </apex:outputText>
+                                    </td>
+                                </tr>
+                            </apex:repeat>
+                        </table>
+                        <br></br><br></br>
+                <table font-family="arial, sans-serif;" border-collapse="collapse;" width="100%;" border="1px solid black;">
+                    <tr style="font-weight: bold;">
+                        <td style="text-align: center;">Category</td>
+                        <td style="text-align: center;">Description</td>
+                        <td style="text-align: center;">Start Date</td>
+                        <td style="text-align: center;">End Date</td>
+                        <td style="text-align: center;">Reviewer Name</td>
+                        
+                    </tr>
+                    <apex:repeat value="{!permit}" var="per">
+                        <tr>
+                            <td style="text-align: center;">{!per.Category__c}</td>
+                            <td style="text-align: center;">{!per.Description__c}</td>
+                            <td style="text-align: center;">
+                                <apex:outputText value="{0, date,dd MMM yyyy}">
+                                    <apex:param value="{!per.StartDate__c}"/>
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align: center;">
+                                <apex:outputText value="{0, date,dd MMM yyyy}">
+                                    <apex:param value="{!per.EndDate__c}"/>
+                                </apex:outputText>
+                            </td>
+                            <td style="text-align: center;">{!per.Reviewer_Name__c}</td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+                
+            </apex:pageBlock>
+            <br></br>
+        <!-- if start -->
+        <apex:pageBlock title="" rendered="{!isEventPermit}">
+            <table font-family="arial, sans-serif;" border-collapse="collapse;" width="100%;" border="1px solid black;">
+                <tr style="font-weight: bold;">
+                    <td style="text-align: center;">Event Name</td>
+                    <td style="text-align: center;">Event Location</td>
+                    <td style="text-align: center;">Invitees</td>
+                    <td style="text-align: center;">Setup Timing</td>
+                    <td style="text-align: center;">Dismantling Timing</td>
+                    
+                </tr>
+                <apex:repeat value="{!permit}" var="per">
+                    <tr>
+                        <td style="text-align: center;">{!per.EventName__c}</td>
+                        <td style="text-align: center;">{!per.EventLocation__c}</td>
+                        <td style="text-align: center;">{!per.Invitees__c}</td>
+                        <td style="text-align: center;">{!per.SetUpTime__c}</td>
+                        <td style="text-align: center;">{!per.DismantleTime__c}</td>
+                        
+                    </tr>
+                </apex:repeat>
+            </table>
+        </apex:pageBlock>
+        <br></br>
+    <apex:pageBlock title="" rendered="{!isEventPermit}">
+        <table font-family="arial, sans-serif;" border-collapse="collapse;" width="100%;" border="1px solid black;">
+            <tr style="font-weight: bold;">
+                
+                <td style="text-align: center;">Catering</td>
+                <td style="text-align: center;">Models/Entertainment</td>
+                <td style="text-align: center;">Media/Photography</td>
+                <td style="text-align: center;">Food Sampling and Mascots</td>
+            </tr>
+            <apex:repeat value="{!permit}" var="per">
+                <tr>
+                    <td style="text-align: center;"> {!per.Catering__c}</td>
+                    <td style="text-align: center;">{!per.Entertainment__c}</td>
+                    <td style="text-align: center;">{!per.Photography__c}</td>
+                    <td style="text-align: center;"> {!per.FoodSamplingAndMascots__c}</td>
+                </tr>
+            </apex:repeat>
+        </table>
+    </apex:pageBlock>
+    
+    <div style="page-break-after: always"/>
+    <h2>
+        Terms &amp; Conditions
+    </h2>
+    <ul>
+        <li>Authorization must be taken for any event &amp; filming with any professional Tools &amp; Cameras.</li>
+        <li>Authorization does not give permission to photograph/film any individual stores within the property. Anyone wishing to photograph these must seek authorization from the store in question.</li>
+        <li>Authorization does not give permission to host any event or activity at any store within the property. Organizer must seek authorization from the stores in question in advance.</li>
+        <li>All photographs/films will be for personal use &amp; will not be used for commercial gain without obtaining the prior written approval of ADGM (Abu Dhabi Global Market), SERCO &amp; Mall Management.</li>
+        <li>When using any flying object for filming\events an approval must be taken from ADGM (Abu Dhabi Global Market) &amp; SERCO Authorities.</li>
+        <li>All events &amp; activations must gain approval of ADGM &amp; Mall Management.</li>
+        <li>All promotions must gain approval of ADGM &amp; Mall Management.</li>
+        <li>When undertaking any event/filming at the Asset in either TGAMI (The Galleria Al Maryah Island) or LC (Luxury Collection). It is required to show utmost consideration to all Guests at all times.</li>
+        <li>All equipment utilized is required to meet the appropriate Health &amp; Safety Standards applicable at that time.</li>
+        <li>Pedestrian traffic flow throughout the asset areas should not be impeded throughout the duration of the event/activation. Crowd control security is required before event/activation take place.</li>
+        <li>Electrical supply leads, where required, must be firmly covered &amp; taped down. Any extra electrical load must be approved by the mall management.</li>
+        <li>The Mall Management will have no responsibility/ liability of any nature whatsoever with respect to any accidents, claims, losses, damages, cause of action arising from &amp; in respect of your photography/filming carried out at the asset, for which you will be wholly &amp; solely responsible/liable.</li>
+        <li>For in store events the store must be open to the public at all times &amp; access must not be restricted.</li>
+        <li>For any events &amp; activation, the organizer must monitor numbers of people within the store/event area at all time &amp; ensure health &amp; safety is not compromised.</li>
+        <li>Preparation for events(installation &amp; dismantle) must be in none operational hours. (As per the timing on the approved permit).</li>
+        <li>Risk assessment &amp; method of statement to be submitted for any major works that going to take place in the store/event area by the contractors.</li>
+        <li>The event organizer who will be providing refreshments, delivery must be through assigned loading bays &amp; only during the assets daily delivery timings. If refreshments are from outside the asset, Serco &amp; Mall Management permit are required. Any remaining food items to be disposed of in an appropriate manner.</li>
+        <li>Music &amp; a DJ to play in the store/event area throughout. Sound levels to be observed &amp; monitored by event organizer. The music must not interfere with any prayer times &amp; no music should be played 15 minutes prior the prayer call &amp; 15 minutes after prayers being called. Music should not affect any trading asset\retailers not to overlap with their amusement area.</li>
+        <li>Event set-up, design layout must be approved by Mall Management.</li>
+        <li>On arrival for event/activation, report to the Security office, with approved authorization form, prior to the commencement to receive the appropriate pass. This pass will remain valid for the duration of your permit.</li>
+        <li>Please display the pass in a visible position on your clothing whilst within the asset &amp; return it to the Security office upon completion of your visit.</li>
+        <li>It is strictly prohibited for any research to be carried out within the public areas of the mall. Any in-store research should be authorized by the individual retailer concerned.</li>
+        <li>Mall Management reserves the right to alter or vary these terms &amp; conditions at any time, at their discretion &amp; to cancel any authorization at any time.</li>
+    </ul>
+    
+</apex:pageBlock>
+<!-- if end -->
+
+</body>
+
+</html>
+
+</apex:form>
+</apex:page>

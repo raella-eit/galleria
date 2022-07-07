@@ -1,0 +1,20 @@
+<template>
+    <div class="card mb-3 text-center">
+        <div class="row g-0">
+            <div class="col-12 col-md-4 bg-dark" if:false={hideImage}>
+                <img if:true={image} src={image} class="card-img h-100 vivify" onload={showImage}>
+            </div>
+            <div class={cardColCls}>
+                <div class="card-body">
+                    <h2 class="card-title">{labels.title}</h2>
+                    <p class="card-text">{labels.shortDescription}</p>
+                    <p class="card-text"><small class="text-muted">{labels.description}</small></p>
+                    <p class="card-text" if:true={isGuest}><small class="text-muted"></small></p>
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-outline-primary me-md-2" onclick={handleClick}>{buttonLabel}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

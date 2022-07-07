@@ -1,0 +1,58 @@
+<template>
+    <template if:false={showFullBookingMessage}>
+        <div if:false={isLoading} class="container-fluid bg-adjust">
+            <div class="row">
+                <h1 class="text-center">{eventDetail.name}</h1>
+            </div>
+            <hr>
+            <template if:false={eventDetail.isMultiDate}>
+                <div class="row">
+                    <lightning-combobox label="Day" value={selectedDay} options={dayOptions} onchange={handleDayChange}
+                        required>
+                    </lightning-combobox>
+                </div>
+                <div class="row">
+                    <lightning-radio-group label="Times" options={timeOptions} value={selectedTime} required
+                        type="radio" onchange={handleTimeChange}>
+                    </lightning-radio-group>
+                </div>
+            </template>
+            <template if:true={eventDetail.isMultiDate}>
+                <div class="row">
+                    <template for:each={eventDetail.days} for:item="day">
+                        <div key={day.date} class="col-6 text-center">
+                            <template for:each={day.times} for:item="time">
+                                <span key={time.id}>
+                                    <lightning-input type="checkbox" label={day.day} onchange={handleTimeSelection}
+                                        value={time.id} name={time.id}> </lightning-input>
+                                </span>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <hr>
+            <template if:true={eventDetail.waiver}>
+                <lightning-formatted-rich-text value={eventDetail.waiver}></lightning-formatted-rich-text>
+                <hr>
+            </template>
+            <button class="btn btn-primary mt-1" onclick={handleClose} label={labels.cancel}>{labels.cancel}</button>
+            <button type="submit" class="btn btn-primary mt-1 float-end" onclick={submitDetails} data-bs-dismiss="modal"
+                label={labels.save}> {labels.save}</button>
+        </div>
+
+    </template>
+    <template if:true={showFullBookingMessage}>
+        <div if:false={isLoading} class='text-center'>{labels.noMoreReservationsForYou}</div>
+        <div if:false={isLoading} class="d-flex justify-content-center mt-3">
+            <a href="#" class="btn btn-outline-primary" onclick={handleGoToEvents}>{labels.ALL_EVENTS_BTN_LBL}</a>
+        </div>
+        <div if:false={isLoading} class="d-flex justify-content-center mt-3">
+            <a href="#" class="btn btn-outline-primary"
+                onclick={handleGoToMyReservations}>{labels.MY_RESERVATIONS_TITLE}</a>
+        </div>
+    </template>
+    <div if:true={isLoading}>
+        <lightning-spinner alternative-text={labels.LOADING} size="medium"></lightning-spinner>
+    </div>
+</template>

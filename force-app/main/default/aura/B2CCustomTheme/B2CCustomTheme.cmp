@@ -1,0 +1,81 @@
+<aura:component
+    implements="forceCommunity:themeLayout,forceCommunity:availableForAllPageTypes,lightning:isUrlAddressable"
+    access="global" description="Galleria B2C Custom Theme">
+    <!-- attribute -->
+    <aura:attribute name="search" type="Aura.Component[]" required="false" />
+    <aura:attribute name="profileMenu" type="Aura.Component[]" required="false" />
+    <aura:attribute name="navBar" type="Aura.Component[]" required="false" />
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false" />
+    <aura:attribute name="url" type="String" />
+    <aura:attribute name="searchIsVisible" type="Boolean" default="false" />
+    <aura:attribute name="searchBarIsVisible" type="Boolean" default="false" />
+    <aura:attribute name="profileSectionVisible" type="Boolean" default="false" />
+    <!--Variable that handles the visibility of the announcement section-->
+    <aura:attribute name="isDisplayWarning" type="Boolean" default="true" />
+    <aura:attribute name="language" type="String" default="en_US" />
+    <aura:attribute name="isDesktop" type="Boolean" default="{!$Browser.formFactor=='DESKTOP'}" />
+    <!--Handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:handler event="forceCommunity:routeChange" action="{!c.handleRouteChange}" />
+
+    <ltng:require styles="{!join(',', 
+    $Resource.GRSiteAssets + '/GRSiteAssets/styles/bootstrap/bootstrap.min.css',
+    $Resource.GRSiteAssets + '/GRSiteAssets/styles/global.css',
+    $Resource.GRSiteAssets + '/GRSiteAssets/styles/animate/animate.css'
+    )}" />
+    <nav id="nav" class="navbar navbar-dark bg-dark fixed-top bg-override">
+        <div class="container h-100 trigger-menu-wrapper p-0">
+            <div class="row h-100 col-12 m-auto gx-2">
+                <div class="col-4 col-md-2 m-auto text-center p-0">
+                    <c:BackButtonIOS />
+                    <c:navigationMenu></c:navigationMenu>
+                    <c:languagePicker></c:languagePicker>
+
+                </div>
+                <div class="col-5 h-100 col-md-8 mt-2 p-1 text-center">
+                    <img src="{!$Resource.GRSiteAssets+'/GRSiteAssets/images/thegallerialogo.png'}" alt="The Galleria"
+                        class="rounded mx-auto h-100 d-block pb-2" onclick="{!c.gotoURL}" />
+                </div>
+                <div class="col-3 col-md-2 m-auto text-center">
+                    <aura:if isTrue="{!v.profileSectionVisible}">
+                        <div class="row">
+                            <div class="col pe-0">
+                                <forceCommunity:notifications />
+                            </div>
+                            <div class="col ps-0">
+
+                                {!v.profileMenu}
+                            </div>
+                        </div>
+                        <aura:set attribute="else">
+                            {!v.profileMenu}
+                        </aura:set>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="main" class="container main p-0" style="{!v.language == 'ar' ? 'direction:rtl;':'direction:ltr;'}"
+        onmapit="{!c.mapit}">
+
+        {!v.newHeader}
+        {!v.body}
+        <div aura:id="iframeContainer" class="iframe iframe-hide">
+            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close" onclick="{!c.closeMap}"></button>
+            <iframe name="22M_Map" id="22map" style="width:100%;height:100%"
+                src="https://galleria.way.wf/3d03/web.v20210910/index.php?"></iframe>
+        </div>
+    </div>
+    <aura:if isTrue="{!v.isDesktop}">
+        <!-- <c:grb2cCustomFooter></c:grb2cCustomFooter> -->
+    </aura:if>
+    <nav class="navbar fixed-bottom vivify fadeIn bg-gradient pb-1">
+        <!-- <div class="container-fluid"> -->
+        <div class="row p-0 bottom-nav-cls w-100">
+
+            <c:bottomMenuNav></c:bottomMenuNav>
+        </div>
+        <!-- </div> -->
+    </nav>
+</aura:component>

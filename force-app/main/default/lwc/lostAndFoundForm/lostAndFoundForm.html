@@ -1,0 +1,57 @@
+<template>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-auto mx-auto mt-3">
+                <h3>{labels.title}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <lightning-record-edit-form 
+            object-api-name={objectApiName} 
+            record-type-id={recordTypeId}
+            onsubmit={onSubmit}>
+             <template if:true={isGuestUser}>
+                <lightning-input-field
+                    field-name={name} data-id="SuppliedName"
+                    onchange={onFieldChange} required>
+                </lightning-input-field>
+                <lightning-input-field
+                    field-name={email} data-id="SuppliedEmail"
+                    onchange={onFieldChange} required>
+                </lightning-input-field>
+                <lightning-input-field
+                    field-name={phone} data-id="SuppliedPhone"
+                    onchange={onFieldChange} required>
+                </lightning-input-field>
+            </template>
+                <lightning-input-field 
+                    field-name={address} data-id="Home_Address__c" 
+                    onchange={onFieldChange} required>
+                </lightning-input-field>
+                <lightning-input-field 
+                    field-name={subject} data-id="Subject" 
+                    onchange={onFieldChange} required>
+                </lightning-input-field>
+                <lightning-input-field 
+                    field-name={whereLost} data-id="Where_Lost__c" 
+                    onchange={onFieldChange} required>
+                </lightning-input-field>
+                <lightning-input-field 
+                    field-name={whenLost} data-id="When_Lost__c" 
+                    onchange={onFieldChange} required>
+                </lightning-input-field>
+                <lightning-input-field 
+                    field-name={itemDesc} data-id="Item_Full_Description__c" 
+                    onchange={onFieldChange} required>
+                </lightning-input-field>
+                <div class="slds-grid slds-align_absolute-center">
+                        <button type="submit"
+                            class="btn btn-primary text-uppercase">{labels.save}</button>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+        <div class='text-center mt-1'>
+            <lightning-formatted-rich-text value={labels.help}></lightning-formatted-rich-text>
+        </div>
+    </div>
+</template>

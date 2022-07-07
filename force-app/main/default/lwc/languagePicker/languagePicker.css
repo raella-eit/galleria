@@ -1,0 +1,5 @@
+.placeholder-sizing {
+    height:16px !important; 
+    width:24px !important; 
+    color: var(--bs-white) !important;
+}

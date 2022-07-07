@@ -1,0 +1,37 @@
+<template>
+  <!-- Modal/Popup Box starts here-->
+  <template if:true={showBanner}>
+    <section
+      role="dialog"
+      tabindex="-1"
+      class="slds-modal slds-fade-in-open slds-modal_large"
+      aria-labelledby="modal-heading-01"
+      aria-modal="true"
+      aria-describedby="modal-content-id-1"
+    >
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+            {title}
+          </h2>
+        </header>
+        <div
+          class="slds-modal__content slds-var-p-around_medium"
+          id="modal-content-id-1"
+        >
+          <div
+            class="slds-text-align_center slds-text-heading_small slds-var-p-around_medium"
+          >
+            {text}
+          </div>
+        </div>
+        <footer class="slds-modal__footer">
+          <button class="slds-button slds-button_brand" onclick={openStore}>
+            <label>{buttonLabel}</label>
+          </button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>

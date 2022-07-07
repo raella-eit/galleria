@@ -1,0 +1,57 @@
+.h-50{
+    height:50%;
+}
+
+.fs-6{
+    font-size: 0.85rem !important;
+}
+
+.fixed-content-height{
+    height:20ch;
+}
+
+.text-truncate{
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* .card-img-overlay{
+    border-bottom: 4px solid rgba(33 ,37, 41,0.7);
+}
+
+.card-img-overlay[data-vip=true] {
+    border-bottom: 4px solid rgba(212 ,175, 55,0.7);
+} */
+
+.card-img-overlay[data-vip=true]::before{
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 65px 45px 0;
+    border-color: transparent rgba(212 ,175, 55,0.7) transparent transparent;
+}
+
+.card-img-overlay[data-vip=true]::after{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    content: 'VIP';
+    transform: rotate(34deg);
+    padding: 4px;
+}
+
+/* .info-bg{
+    background-color: rgba(var(--bs-dark-rgb),0.7);
+} */
+
+.card-bg{
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.01) 1%,rgba(0,0,0,0.8) 83%,rgba(0,0,0,1) 100%);
+}

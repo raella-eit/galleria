@@ -1,0 +1,164 @@
+.THIS * {
+    --lwc-fontFamily:"URWGeometricArabicRegular";
+    color:var(--bs-black)
+}
+
+.THIS.main {
+    padding-bottom: 20px;
+    background-color:var(--bs-gray-100);
+    width: 100vw;
+    height: 95vh !important;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
+    margin-top:50px; 
+    padding-bottom:140px !important;
+    overflow-x: hidden !important;
+    background:#fff;
+}
+
+.THIS .forceCommunityGlobalNavigation{
+    background-color: transparent;
+}
+
+
+.THIS .forceCommunityGlobalNavigation .slds-list__item a, 
+.THIS .forceCommunityGlobalNavigation .slds-list__item button{
+    font-family: "URWGeometricArabicRegular";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    text-transform: none;
+    color: #fff;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+
+.THIS .forceCommunitySearchBox.big-search-container{
+    text-transform: uppercase;
+    font-family: "URWGeometricArabicRegular";
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+}
+
+.THIS .forceCommunitySearchBox .search-button{
+    display:none;
+}
+
+.THIS .forceCommunitySearchBox .has-input .search-field, 
+.THIS .forceCommunitySearchBox .search-field, 
+.THIS .forceCommunitySearchBox .search-field::placeholder,
+.THIS .forceCommunitySearchBox .search-field:focus{
+    background:none;
+    text-transform: uppercase;
+    font-family: "URWGeometricArabicRegular";
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    color:#fff;
+}
+
+.THIS .forceCommunityGlobalNavigation .slds-list_vertical{
+    background-color: #333
+}
+
+.THIS .forceCommunityGlobalNavigation .comm-navigation__list.slds-list_horizontal{
+    justify-content: center!important;
+}
+
+.THIS .slds-button{
+    color: var(--bs-white) !important;
+    font-weight: bold !important;
+}
+
+.THIS .forceCommunityEmbeddedServiceHelpButton .flatButton{
+    background-color:#333;
+}
+
+.THIS .forceCommunitySection .cb-section_column:only-child{
+    padding:0;
+}
+
+.THIS .slds-icon-text-default{
+    fill: var(--bs-black);
+}
+
+.THIS c-navigation-menu .slds-icon-text-default{
+    fill: var(--bs-white);
+}
+.THIS.navbar{
+    transition: transform 0.4s;
+    width:100%;
+    height:50px;
+}
+
+.THIS.scroll-down{
+    transform: translate3d(0, -100%, 0);
+    width:0px;
+}
+
+.THIS.scroll-up{
+    transform: none;
+}
+
+.THIS.shadow-top{
+    box-shadow: 0 -5px 5px -5px rgba(0,0,0,.15)!important;
+}
+
+.THIS.rounded-top{
+    border-top-right-radius: 1rem!important;
+    border-top-left-radius: 1rem!important;
+}
+
+.THIS.bg-light-70{
+    background-color: rgba(var(--bs-light-rgb),0.7)!important;
+}
+
+.THIS.bg-override {
+    background-color: black !important;
+}
+
+.THIS.bg-gradient{
+    background-color: var(--bs-white) !important;
+}
+
+.THIS.fixed-bottom{
+    z-index:500;
+    max-height:fit-content;
+    bottom:0;
+    align-content: flex-end;
+    height:auto;
+}
+
+.THIS.login-btn {
+    color: var(--bs-white) !important;
+    font-weight: bold !important;
+}
+
+.THIS .login-btn:focus, .THIS .login-btn:active, .THIS .login-btn:hover {
+    box-shadow: none!important;
+    color: var(--bs-gray-300) !important;
+    background-color: black !important;
+    border: none !important;
+}
+.THIS .iframe{
+    position:absolute;
+    height:500px;
+    width:100%;
+    top:15%;
+    background-color:white;
+    padding:20px;
+    z-index:9999;
+}
+.THIS .iframe-hide{
+    right:10000px;
+    z-index:-9999;
+}
+/* @media screen and (max-width: 600px) {
+    .THIS .navbar .fixed-top{
+        height:15%;
+    }
+    .THIS.main{
+        margin-top:30%;
+    }
+} */

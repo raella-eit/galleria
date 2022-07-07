@@ -1,0 +1,12 @@
+<template>
+    <template if:false={error}>
+            <div class="row">
+                <template for:each={menuItems} for:item="menu">
+                    <div key={menu.Label} class="col float-start text-center bottom-nav-item"
+                        onclick={handleMenuSelection} data-target={menu.target} data-name={menu.label}>
+                        <img src={menu.icon} class="imgsize-cls" />
+                    </div>
+                </template>
+            </div>
+    </template>
+</template>

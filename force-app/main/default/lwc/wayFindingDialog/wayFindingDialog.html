@@ -1,0 +1,10 @@
+<template>
+    <div class="slds-m-top_small slds-m-bottom_medium ">
+        <h2 class="slds-text-heading_small slds-m-bottom_small">
+            {htmlLabel.wayFindingConfirmation}
+        </h2>
+        <lightning-button if:true={url} variant="brand" label={htmlLabel.wayFindingConfirmationButton}
+            title="Primary action" onclick={handleClick} class="slds-m-left_x-small slds-align_absolute-center">
+        </lightning-button>
+    </div>
+</template>

@@ -1,0 +1,15 @@
+<template>
+    <div if:true={offerItems.length}>
+        <div class="container-fluid">
+            <h2 class="text-center mt-2 mb-2">{labels.TOP_OFFERS_SECTION_TITLE}</h2>
+            <div class="row">
+                <c-generic-data-card items={offerItems} disable-load-more parent-redirect
+                    onselect={handleOfferSelection}>
+                </c-generic-data-card>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <a href="#" class="btn btn-outline-primary" onclick={handleLoadMore}>{labels.ALL_OFFERS_BTN_LBL}</a>
+        </div>
+    </div>
+</template>

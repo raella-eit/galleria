@@ -1,0 +1,49 @@
+<template>
+    <!-- <div class="container mt-2">
+        <div class={rtlSupp.alignClass}>
+            <div class={rtlSupp.shopClass}>
+                <h1>{labels.TITLE}</h1>
+            </div>
+        </div>
+    </div>
+    <div if:true={isLoading}>
+        <lightning-spinner alternative-text={LOADING} size="medium"></lightning-spinner>
+    </div>
+    <div class="container mb-3 mt-2">
+        <template if:false={data.length}>
+            <div if:false={isLoading} class='text-center'>{labels.NO_RESULT_FOUND_MSG}</div>
+            <div if:false={isLoading} class="d-flex justify-content-center mt-3">
+                <a href="#" class="btn btn-outline-primary" onclick={handleGoToEvents}>{labels.ALL_EVENTS_BTN_LBL}</a>
+            </div>
+        </template>-->
+    <!-- <div class="row g-0">  -->
+    <div if:true={searchingAndWaiting}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </div>
+    <div if:false={searchingAndWaiting}>
+
+        <template if:true={data} for:each={data} for:item="cases">
+            <div class="col-12 col-md-4 d-flex align-items-center rounded bg-white vivify popInLeft mb-2 p-2"
+                key={cases.Id}>
+                <button type="button" class="btn btn-outline-dark float-start me-2 ms-2">
+                    <lightning-icon size="small" icon-name="utility:case" alternative-text="view" title="view"
+                        onclick={handleCaseView} data-item={cases.Id} data-name={cases.Subject}>
+                    </lightning-icon>
+                </button>
+                <div class="text-truncate align-items-center">
+
+                    <p class="text-muted mb-0">{cases.Subject}</p>
+                </div>
+            </div>
+        </template>
+        <!-- <div class="col-12 col-md-4 d-flex align-items-center rounded bg-white vivify popInLeft mb-2 p-2"> -->
+<!-- color: var(--slds-c-button-text-color,var(--sds-c-button-text-color,#92badc)) !important; -->
+            <div class="d-flex justify-content-center mt-3">
+                <a class="btn btn-outline-primary" onclick={loadMore}>Load More</a>
+            </div>
+        <!-- </div> -->
+
+    </div>
+
+    <!-- </div> -->
+</template>
